@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reuniune Multimi</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      label {
+        font-weight: bold;
+      }
+      input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 300px;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #3e8e41;
+      }
+      div {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reuniune Multimi</h1>
+    <div>
+      <label for="array1">Enter array 1:</label>
+      <input type="text" id="array1">
+    </div>
+    <div>
+      <label for="array2">Enter array 2:</label>
+      <input type="text" id="array2">
+    </div>
+    <div>
+      <button onclick="reunion()">REUNIUNE</button>
+    </div>
+    <div>
+      <label for="output">Multimea reunita:</label>
+      <input type="text" id="output" readonly>
+    </div>
+    
+    <script>
+      function reunion() {
+        var array1 = document.getElementById("array1").value.split(" ");
+        var array2 = document.getElementById("array2").value.split(" ");
+        var reunitedArray = array1.concat(array2);
+        
+        document.getElementById("output").value = reunitedArray.join(" ");
+      }
+    </script>
+  </body>
+</html>

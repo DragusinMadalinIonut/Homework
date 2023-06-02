@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Caesar Encryption</title>
+  </head>
+  <body>
+    <h1>Caesar Encryption</h1>
+    <label for="input">Enter text to encrypt:</label>
+    <input type="text" id="input">
+    <br>
+    <button onclick="encrypt()">ENCRYPT</button>
+    <br>
+    <label for="output">Encrypted text:</label>
+    <input type="text" id="output" readonly>
+    
+    <script>
+      function encrypt() {
+        var input = document.getElementById("input").value;
+        var output = "";
+        
+        for (var i = 0; i < input.length; i++) {
+          var charCode = input.charCodeAt(i);
+          
+          // Verificare daca litera este de tip mare
+          if (charCode >= 65 && charCode <= 90) {
+            charCode = ((charCode - 65 + 3) % 26) + 65;
+          }
+          // Verificare daca litera este de tip mica
+          else if (charCode >= 97 && charCode <= 122) {
+            charCode = ((charCode - 97 + 3) % 26) + 97;
+          }
+          
+          output += String.fromCharCode(charCode);
+        }
+        
+        document.getElementById("output").value = output;
+      }
+    </script>
+  </body>
+</html>

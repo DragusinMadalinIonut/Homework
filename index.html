@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Encriptie matricii prin Transportare</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Encriptie matricii prin Transportare</h1>
+
+    <label for="inputText">Introducere text:</label>
+    <textarea id="inputText" rows="4" cols="50"></textarea>
+    <button onclick="encryptText()">Criptre</button>
+
+    <div id="encryptedText"></div>
+
+    <script>
+        function encryptText() {
+            var inputText = document.getElementById("inputText").value;
+            var rows = inputText.split("\n");
+
+            var columnArrays = [];
+            var maxLength = 0;
+
+            // Fiecare rand este impartit in coloane
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i].trim();
+                var columns = row.split(" ");
+                columnArrays.push(columns);
+                maxLength = Math.max(maxLength, columns.length);
+            }
+
+            // Pad pentru clonele mai scurte cu sir gol
+            for (var i = 0; i < columnArrays.length; i++) {
+                var columns = columnArrays[i];
+                while (columns.length < maxLength) {
+                    columns.push("");
+                }
+            }
+
+            // Realizarea encriptiei pe coloana
+            var encryptedColumns = [];
+            for (var j = 0; j < maxLength; j++) {
+                var encryptedColumn = "";
+                for (var i = 0; i < columnArrays.length; i++) {
+                    encryptedColumn += columnArrays[i][j];
+                }
+                encryptedColumns.push(encryptedColumn);
+            }
+
+            // Combine encrypted columns
+            var encryptedText = encryptedColumns.join(" ");
+
+            var encryptedTextElement = document.getElementById("encryptedText");
+            encryptedTextElement.innerHTML = "<h3>Textul criptat:</h3>";
+
+            var table = document.createElement("table");
+            var row = document.createElement("tr");
+            for (var i = 0; i < encryptedColumns.length; i++) {
+                var cell = document.createElement("td");
+                cell.textContent = encryptedColumns[i];
+                row.appendChild(cell);
+            }
+            table.appendChild(row);
+            encryptedTextElement.appendChild(table);
+
+            var combinedRow = document.createElement("p");
+            combinedRow.textContent = "Combat: " + encryptedText;
+            encryptedTextElement.appendChild(combinedRow);
+        }
+    </script>
+</body>
+</html>
