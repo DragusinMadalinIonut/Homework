@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Incriptare prin Transpozitie</title>
+</head>
+<body>
+    <h1>Incriptare prin Transpozitie</h1>
+
+    <form id="cipherForm" method="post" action="TRANZPOZITIE.php">
+        <label for="plaintext">Introduce-ti textul simplu:</label><br>
+        <input type="text" id="plaintext" name="plaintext"><br><br>
+        <input type="submit" value="Encrypt">
+    </form>
+
+    <div id="resultContainer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#cipherForm').submit(function(e) {
+                e.preventDefault(); 
+
+                var plaintext = $('#plaintext').val();
+
+                $.post($(this).attr('action'), { plaintext: plaintext }, function(data) {
+                    var resultContainer = $('#resultContainer');
+                    resultContainer.html(data);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
